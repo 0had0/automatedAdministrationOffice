@@ -18,6 +18,7 @@ def authenticate_account(request):
             'user_id': user.user_id,
             'token': request.auth,
             'is_director': user.is_director,
+            'is_reviewer': user.is_reviewer,
         }, status=status.HTTP_200_OK)
 
 
@@ -25,7 +26,7 @@ def authenticate_account(request):
 def register(request):
     serializer = AccountSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        acc = serializer.create(request.data)
+        acc = serializer.create()
         return Response(status=status.HTTP_200_OK, data={"user_id": acc.user_id, "token": acc.token})
 
 

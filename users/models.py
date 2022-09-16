@@ -7,8 +7,6 @@ from .managers import (DirectorManager, UserManager, ReviewerManager)
 
 
 class Director(Account):
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
-
     objects = DirectorManager()
 
     def __str__(self):
@@ -19,13 +17,14 @@ class Director(Account):
 
 
 class User(Account):
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
-
     objects = UserManager()
+
+    class Meta:
+        db_table = 'users'
 
 
 class Reviewer(Account):
-    # TODO: add reviewer permissions, aka. difference between this class and User class
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
-
     objects = ReviewerManager()
+
+    class Meta:
+        db_table = 'reviewers'

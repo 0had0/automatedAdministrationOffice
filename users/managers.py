@@ -14,7 +14,6 @@ class UserManager(MyAccountManager):
 
 
 class ReviewerManager(MyAccountManager):
-    # TODO: add reviewer permissions, aka. difference between this class and User class
 
     def create_user(self, **kwargs):
-        return MyAccountManager.create_user(self, **kwargs, is_director=False)
+        return MyAccountManager.create_user(self, **kwargs, is_director=False, is_reviewer=True)

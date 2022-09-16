@@ -7,6 +7,8 @@ from django.contrib.auth.models import (
 )
 from .manager import *
 
+from institution.models import Institution
+
 
 class Account(AbstractBaseUser):
     user_id = models.AutoField(verbose_name="user_id", unique=True, primary_key=True)
@@ -15,7 +17,9 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=50)
     phone_number = models.IntegerField(default=-1)
 
+    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
     is_director = models.BooleanField(default=False)
+    is_reviewer = models.BooleanField(default=False)
 
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)

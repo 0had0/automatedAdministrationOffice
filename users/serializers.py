@@ -1,27 +1,30 @@
-from auth.serializers import AccountSerializer
+from auth.serializers import AccountSerializer, serializers
 
 from .models import Director, Reviewer, User
 
 
-class DirectorSerializer(AccountSerializer):
-    class Meta(AccountSerializer.Meta):
+class DirectorSerializer(serializers.ModelSerializer):
+    class Meta:
         model = Director
+        exclude = ('password',)
 
     def create(self, validated_data):
         return Director.objects.create_user(**validated_data)
 
 
-class ReviewerSerializer(AccountSerializer):
-    class Meta(AccountSerializer.Meta):
+class ReviewerSerializer(serializers.ModelSerializer):
+    class Meta:
         model = Reviewer
+        exclude = ('password',)
 
     def create(self, validated_data):
         return Reviewer.objects.create_user(**validated_data)
 
 
-class UserSerializer(AccountSerializer):
-    class Meta(AccountSerializer.Meta):
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
         model = User
+        exclude = ('password',)
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)

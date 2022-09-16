@@ -11,5 +11,5 @@ class InstitutionSerializer(serializers.ModelSerializer):
         model = Institution
         fields = '__all__'
 
-    def create(self, validated_data):
-        return Institution.objects.create(**validated_data)
+    def create(self):
+        return Institution.objects.create(**self.data)

@@ -48,13 +48,14 @@ class LoginSerializer(serializers.Serializer):
             'user_id': user.user_id,
             'token': user.token,
             'is_director': user.is_director,
+            'is_reviewer': user.is_reviewer
         }
 
 
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['user_id', 'first_name', 'last_name', 'email', 'token', 'password', 'is_director']
+        fields = ['user_id', 'first_name', 'last_name', 'email', 'token', 'password', 'is_director', 'is_reviewer', 'institution']
 
     # overwrite password field like this
     password = serializers.CharField(
